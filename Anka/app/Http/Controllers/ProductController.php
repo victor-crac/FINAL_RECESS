@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -11,9 +12,10 @@ class ProductController extends Controller
      *
      * @return void
      */
-    public function index(): void
+    public function index(): View
     {
         //
+        return view('product');
     }
 
     /**

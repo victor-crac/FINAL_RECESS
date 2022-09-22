@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::resource('home', Co\HomeController::class);
 Route::resource('participant', Co\ParticipantController::class);
+Route::resource('product', Co\ProductController::class);
+
 
 //Route::get('/home', [HomeController::class, 'index'])->name('home');
 //
