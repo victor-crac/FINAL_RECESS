@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Participant;
+use Illuminate\View\View;
 
 class ParticipantController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return void
+     * @return View
      */
-    public function index(): void
+    public function index(): View
     {
-        //
+        $participants = Participant::all();
+        return view('participants', ['participants' => $participants, 'total' => count($participants)]);
     }
 
     /**

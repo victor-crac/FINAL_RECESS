@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--  <meta name="csrf-token" content="{{ csrf_token() }}">--}}
   <title>ANKA BUSINESS SUPPORT SERVICES</title>
 
-  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+{{--  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">--}}
   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
   <link rel="stylesheet" href="{{ asset('plugins/chart.js/Chart.min.css') }}">
@@ -36,29 +36,25 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <p>Total number of participants: {{ $total ?? '' }}</p>
-                        @if($total ?? ''>0)
+                        @if($total>0)
                           <table id="participants_table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Participant name</th>
                                 <th>Date of Birth</th>
-                                <th>Rank</th>
-                                <th>Product</th>
-                              
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($participants as $participants)
+                            @foreach($participants as $participant)
                                 <tr>
-                                    <td>{{ $participants['participant_id'] }}</td>
-                                    <td>{{ $participants['Name'] }}</td>
-                                    <td>{{ $participants['Date_Of_Birth'] }}</td>
-                                  
+                                    <td>{{ $participant['id'] }}</td>
+                                    <td>{{ $participant['name'] }}</td>
+                                    <td>{{ $participant['date_of_birth'] }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
-                            
+
                           </table>
                         <script type="text/javascript">
                             $(function () {
