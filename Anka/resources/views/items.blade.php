@@ -40,8 +40,7 @@
                             <td>Participant d</td>
                             <td>Product ID</td>
                             <td>GOODS_SOLD</td>
-                            {{-- <td>City Name</td>
-                            <td>Email</td> --}}
+                       
                             </tr>
                             @foreach ($sales as $p)
                             <tr>

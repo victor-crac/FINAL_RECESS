@@ -9,13 +9,11 @@
     <body>
 <h1>sales page</h1>
 <div>
-    <table id="participants_table">
+    <table id="participants_table" border="1">
         <tr>
-        <td>Participant d</td>
-        <td>Product ID</td>
+        <td>PARTICIPANT ID</td>
+        <td>PRODUCT ID</td>
         <td>GOODS_SOLD</td>
-        {{-- <td>City Name</td>
-        <td>Email</td> --}}
         </tr>
         @foreach ($sales as $p)
         <tr>
@@ -37,17 +35,27 @@
             });
         });
     </script>
+    @php
+        $good_sold = [['name'=>'Red', 'num'=> 12],['name'=>'Blue', 'num'=> 9],['name'=>'Green', 'num'=> 3],['name'=>'Yellow', 'num'=> 5],['name'=>'Purple', 'num'=> 8],['name'=>'Orange', 'num'=> 11]];
+        $goods = [];
+        $sales = [];
+        for ($i=0; $i<count($good_sold); $i++){
+            $goods[] = $good_sold[$i]['name'];
+            $sales[] = $good_sold[$i]['num'];
+        }
+    @endphp
 <script>
 const ctx = document.getElementById('myChart').getContext('2d');
+
 const myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], 
+        labels: {!! json_encode($goods) !!}, 
         // want to get data from a db and label as participants name..
 
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: {!! json_encode($sales) !!},
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
