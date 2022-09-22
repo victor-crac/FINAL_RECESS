@@ -104,18 +104,18 @@ public class Server {
                     desc.append(args[i]).append(" ");
                 }
 
-                List<HashMap<String, String>> dbMsg2 = DBOperations.select("select * from posts where participant_id="+id+";");
+                List<HashMap<String, String>> dbMsg2 = DBOperations.select("select * from products where participant_id="+id+";");
                 String dbMsg1;
                 if (dbMsg2.isEmpty()){
-                    dbMsg1 = DBOperations.insert("insert into posts(product_name, quantity, price, description, participant_id) values ('"+product+"',"+quantity+","+price+",'"+desc+"','"+id+"');").get("error");
+                    dbMsg1 = DBOperations.insert("insert into products(name, quantity, price, description, participant_id) values ('"+product+"',"+quantity+","+price+",'"+desc+"','"+id+"');").get("error");
                     if (dbMsg1 != null){
                         return dbMsg1;
                     }
                     return "New product posted successfully";
                 }
 
-                if (dbMsg2.get(0).get("product_name").equals(product)){
-                    dbMsg1 = DBOperations.update("update posts set quantity=quantity+"+quantity+", price="+price+", description='"+desc+"' where id="+dbMsg2.get(0).get("id")+";").get("error");
+                if (dbMsg2.get(0).get("name").equals(product)){
+                    dbMsg1 = DBOperations.update("update products set quantity=quantity+"+quantity+", price="+price+", description='"+desc+"' where id="+dbMsg2.get(0).get("id")+";").get("error");
                     if (dbMsg1 != null){
                         return dbMsg1;
                     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Participant;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ParticipantController extends Controller
@@ -12,10 +13,12 @@ class ParticipantController extends Controller
      * Display a listing of the resource.
      *
      * @return View
+     * @throws \JsonException
      */
-    public function index(): View
+    public function index()
     {
-        $participants = Participant::all();
+        $participants = json_decode(json_encode(DB::select("select pt.id, pt.name, pt.date_of_birth, p.name as product from participants pt inner join products p on pt.id = p.participant_id;"), JSON_THROW_ON_ERROR), TRUE, 512, JSON_THROW_ON_ERROR);
+
         return view('participants', ['participants' => $participants, 'total' => count($participants)]);
     }
 
